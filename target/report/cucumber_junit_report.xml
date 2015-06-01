@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite failures="0" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="1" time="314.373594">
+<testcase classname="Regression" name="create SIM, create Prepaid and Postpaid subscriber and gather logs, screenshots and DB data" time="314.373594">
+<system-out><![CDATA[Given Configurations........................................................passed
+When Create SIM.............................................................passed
+And Create Account..........................................................passed
+And Start LogCollector......................................................passed
+And Create "Prepaid" Subscriber with PP "100026" and initial Balance "$1000.00".passed
+And Collect Logs............................................................passed
+And Gather "Account" level "Transactions"...................................passed
+And Gather "Account" level "Notes"..........................................passed
+And Gather "Account" level "UsageBalance"...................................passed
+And Gather "Subscriber" level "MobileNumberTab".............................passed
+And Gather "Subscriber" level "BillingInfoTab"..............................passed
+And Gather "Subscriber" level "RatingTab"...................................passed
+And Gather "Subscriber" level "Transactions"................................passed
+And Gather "Subscriber" level "Notes".......................................passed
+And Gather "Subscriber" level "UsageBalance"................................passed
+And Gather "Subscriber" level "CallDetails".................................passed
+And GatherDBData using query "getTransactions"..............................passed
+Then Verify that subscriber created in "Activated" state....................passed
+]]></system-out>
+</testcase>
+</testsuite>

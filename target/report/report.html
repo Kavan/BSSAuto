@@ -1,0 +1,21 @@
+Feature: Regression
+
+  Scenario: create SIM, create Prepaid and Postpaid subscriber and gather logs, screenshots and DB data [90m# Regression.feature:2[0m
+    [32mGiven [0m[32mConfigurations[0m                                                                                [90m# RegressionSteps.Configurations()[0m
+    [32mWhen [0m[32mCreate SIM[0m                                                                                     [90m# RegressionSteps.createSIM()[0m
+    [32mAnd [0m[32mCreate Account[0m                                                                                  [90m# RegressionSteps.createAccount()[0m
+    [32mAnd [0m[32mStart LogCollector[0m                                                                              [90m# RegressionSteps.StartLogCollector()[0m
+    [32mAnd [0m[32mCreate "[0m[32m[1mPrepaid[0m[32m" Subscriber with PP "[0m[32m[1m100026[0m[32m" and initial Balance "[0m[32m[1m$1000.00[0m[32m"[0m                     [90m# RegressionSteps.createSubscriber(String,String,String)[0m
+    [32mAnd [0m[32mCollect Logs[0m                                                                                    [90m# RegressionSteps.CollectLogs()[0m
+    [32mAnd [0m[32mGather "[0m[32m[1mAccount[0m[32m" level "[0m[32m[1mTransactions[0m[32m"[0m                                                           [90m# RegressionSteps.GatherData(String,String)[0m
+    [32mAnd [0m[32mGather "[0m[32m[1mAccount[0m[32m" level "[0m[32m[1mNotes[0m[32m"[0m                                                                  [90m# RegressionSteps.GatherData(String,String)[0m
+    [32mAnd [0m[32mGather "[0m[32m[1mAccount[0m[32m" level "[0m[32m[1mUsageBalance[0m[32m"[0m                                                           [90m# RegressionSteps.GatherData(String,String)[0m
+    [32mAnd [0m[32mGather "[0m[32m[1mSubscriber[0m[32m" level "[0m[32m[1mMobileNumberTab[0m[32m"[0m                                                     [90m# RegressionSteps.GatherData(String,String)[0m
+    [32mAnd [0m[32mGather "[0m[32m[1mSubscriber[0m[32m" level "[0m[32m[1mBillingInfoTab[0m[32m"[0m                                                      [90m# RegressionSteps.GatherData(String,String)[0m
+    [32mAnd [0m[32mGather "[0m[32m[1mSubscriber[0m[32m" level "[0m[32m[1mRatingTab[0m[32m"[0m                                                           [90m# RegressionSteps.GatherData(String,String)[0m
+    [32mAnd [0m[32mGather "[0m[32m[1mSubscriber[0m[32m" level "[0m[32m[1mTransactions[0m[32m"[0m                                                        [90m# RegressionSteps.GatherData(String,String)[0m
+    [32mAnd [0m[32mGather "[0m[32m[1mSubscriber[0m[32m" level "[0m[32m[1mNotes[0m[32m"[0m                                                               [90m# RegressionSteps.GatherData(String,String)[0m
+    [32mAnd [0m[32mGather "[0m[32m[1mSubscriber[0m[32m" level "[0m[32m[1mUsageBalance[0m[32m"[0m                                                        [90m# RegressionSteps.GatherData(String,String)[0m
+    [32mAnd [0m[32mGather "[0m[32m[1mSubscriber[0m[32m" level "[0m[32m[1mCallDetails[0m[32m"[0m                                                         [90m# RegressionSteps.GatherData(String,String)[0m
+    [32mAnd [0m[32mGatherDBData using query "[0m[32m[1mgetTransactions[0m[32m"[0m                                                      [90m# RegressionSteps.GatherDBData(String)[0m
+    [32mThen [0m[32mVerify that subscriber created in "[0m[32m[1mActivated[0m[32m" state[0m                                            [90m# RegressionSteps.verifySubscriberState(String)[0m

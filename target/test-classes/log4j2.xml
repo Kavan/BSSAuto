@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<Configuration packages="com.redknee.bssauto.helpers"> 
+  <Appenders> 
+     <RollingFile name="Rolling-default" fileName="logs/bssauto.html"
+       filePattern="logs/$${date:yyyy-MM}/bssauto-%d{MM-dd-yyyy}-%i.log.gz">
+     <!--   <PatternLayout pattern="%d %t %-5p %c{2} - %m%n"/>  -->
+     <!-- <HTMLLayout charset="UTF-8" title="log">
+      </HTMLLayout>   --> 
+        <CustomHTMLLayout charset="UTF-8" title="BSSAuto Logs" locationInfo="true" />
+      <Policies>
+          <OnStartupTriggeringPolicy />
+          <SizeBasedTriggeringPolicy size="10 MB" />
+          <TimeBasedTriggeringPolicy />
+        </Policies>
+   </RollingFile>
+          
+    <Console name="STDOUT" target="SYSTEM_OUT"> 
+      <PatternLayout pattern="%d %-5p [%t] %C{2} (%F:%L) - %m%n"/> 
+    </Console> 
+  </Appenders> 
+  <Loggers> 
+    <Root level="trace"> 
+      <AppenderRef ref="Rolling-default"/>
+      <!--  <AppenderRef ref="HTMLAppender"/>-->
+    </Root> 
+  </Loggers> 
+</Configuration>
