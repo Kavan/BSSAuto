@@ -19,7 +19,7 @@
     </Console> 
   </Appenders> 
   <Loggers> 
-    <Root level="trace"> 
+    <Root level="info"> 
       <AppenderRef ref="Rolling-default"/>
       <!--  <AppenderRef ref="HTMLAppender"/>-->
     </Root> 

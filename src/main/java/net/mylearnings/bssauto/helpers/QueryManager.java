@@ -6,7 +6,7 @@ public  class QueryManager {
 	public static String getFreeSIMOracle="select max(packid)+1 from simcard where upper(packid)= lower(packid)";
 	
 	//SQL server string compare is case Insensitive, to make column case sensitive added COLLATE Latin1_General_CS_AS explicitly after column name
-	public static String getFreeSIMSQLServer="select max(cast(packid AS bigint))+1  from simcard where packId in (select packid from simcard where upper(packId COLLATE Latin1_General_CS_AS) = lower(packid COLLATE Latin1_General_CS_AS)) ;";
+	public static String getFreeSIMSQLServer="select cast(max(packid) AS bigint) + 1  from simcard where packId in (select packid from simcard where upper(packId COLLATE Latin1_General_CS_AS) = lower(packid COLLATE Latin1_General_CS_AS)) ;";
 	
 	public static String getPrepaidGSMMSISDNOracle ="select max(msisdn) from msisdn where subscribertype in( 2,1) and state = 0 and technology= 0 and spid = ?";
 	public static String getPrepaidTDMAMSISDNOracle ="select max(msisdn) from msisdn where subscribertype in( 2,1) and state = 0 and technology= 1 and spid = ?";
@@ -30,8 +30,8 @@ public  class QueryManager {
 	public static String getSuspendedEntityOracle="select * from suspendedEntity where subscriberid = ?";
 	public static String getSuspendedEntitySQLServer="select * from suspendedEntity where subscriberid = ?;";
 	
-	public static String getSubscriberStateOracle="select state from subscriber where msisdn = ? and ban = ?";
-	public static String getSubscriberStateSQLServer="select state from subscriber where msisdn = ? and ban = ?;";
+	public static String getSubscriberStateOracle="select state from subscriber where msisdn = ?";
+	public static String getSubscriberStateSQLServer="select state from subscriber where msisdn = ?;";
 	public static String getQuery(String queryName) {
 		QueryManager qm = new QueryManager();
 		String query=null;

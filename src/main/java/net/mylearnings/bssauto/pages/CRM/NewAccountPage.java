@@ -238,12 +238,15 @@ public class NewAccountPage extends BasePage{
 		//WA - findBys and FindAll not working staleElementException
 		WebElement groupType = null;
 		
-		if(value.equals("Group"))
+		if(value.equals("Group")){	
 			groupType = this.driver.findElement(By.xpath("//input[@name='.groupType'][@value='1']"));
-		if(value.equals("Group Pooled"))
-			groupType = this.driver.findElement(By.xpath("//input[@name='.groupType'][@value='3']"));
-		if(groupType!=null);
 			groupType.sendKeys(Keys.SPACE);
+		}
+		if(value.equals("Group Pooled")){
+			groupType = this.driver.findElement(By.xpath("//input[@name='.groupType'][@value='3']"));
+			groupType.sendKeys(Keys.SPACE);
+		}
+			
 		return this;
 	}
 	public NewAccountPage setResponsible(String resp)

@@ -1,23 +1,64 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite failures="0" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="1" time="314.373594">
-<testcase classname="Regression" name="create SIM, create Prepaid and Postpaid subscriber and gather logs, screenshots and DB data" time="314.373594">
+<?xml version="1.0" encoding="UTF-8"?><testsuite failures="0" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="3" time="607.475648">
+<testcase classname="Regression" name="create prepaid subscriber and gather logs screenshots and DB data" time="264.51257">
 <system-out><![CDATA[Given Configurations........................................................passed
-When Create SIM.............................................................passed
-And Create Account..........................................................passed
-And Start LogCollector......................................................passed
-And Create "Prepaid" Subscriber with PP "100026" and initial Balance "$1000.00".passed
+When Create a SIM...........................................................passed
+And Create "Prepaid" "Individual" Account...................................passed
+And Start "BSS" LogCollector for "60" seconds...............................passed
+And Create "Individual" "Prepaid" Subscriber with PP "100026" and Initial Balance/Credit Limit "$1000.00".passed
 And Collect Logs............................................................passed
-And Gather "Account" level "Transactions"...................................passed
-And Gather "Account" level "Notes"..........................................passed
-And Gather "Account" level "UsageBalance"...................................passed
-And Gather "Subscriber" level "MobileNumberTab".............................passed
-And Gather "Subscriber" level "BillingInfoTab"..............................passed
-And Gather "Subscriber" level "RatingTab"...................................passed
-And Gather "Subscriber" level "Transactions"................................passed
-And Gather "Subscriber" level "Notes".......................................passed
-And Gather "Subscriber" level "UsageBalance"................................passed
-And Gather "Subscriber" level "CallDetails".................................passed
-And GatherDBData using query "getTransactions"..............................passed
-Then Verify that subscriber created in "Activated" state....................passed
+And Gather "Transactions" for "Individual" account..........................passed
+And Gather "Notes" for "Individual" account.................................passed
+And Gather "UsageBalance" for "Individual" account..........................passed
+And Gather "MobileNumberTab" for "Individual" subscriber....................passed
+And Gather "BillingInfoTab" for "Individual" subscriber.....................passed
+And Gather "RatingTab" for "Individual" subscriber..........................passed
+And Gather "Transactions" for "Individual" subscriber.......................passed
+And Gather "Notes" for "Individual" subscriber..............................passed
+And Gather "UsageBalance" for "Individual" subscriber.......................passed
+And Gather "CallDetails" for "Individual" subscriber........................passed
+And GatherDBData using query "getTransactions" for "Individual" Account.....passed
+Then Verify that "Individual" subscriber is created in "Activated" state....passed
+]]></system-out>
+</testcase>
+<testcase classname="Regression" name="create Postpaid subscriber and gather logs screenshots and DB data" time="211.15149">
+<system-out><![CDATA[Given Configurations........................................................passed
+When Create a SIM...........................................................passed
+And Create "Postpaid" "Individual" Account..................................passed
+And Start "BSS" LogCollector for "60" seconds...............................passed
+And Create "Individual" "Postpaid" Subscriber with PP "100062" and Initial Balance/Credit Limit "$1000.00".passed
+And Collect Logs............................................................passed
+And Gather "Transactions" for "Individual" account..........................passed
+And Gather "Notes" for "Individual" account.................................passed
+And Gather "UsageBalance" for "Individual" account..........................passed
+And Gather "MobileNumberTab" for "Individual" subscriber....................passed
+And Gather "BillingInfoTab" for "Individual" subscriber.....................passed
+And Gather "RatingTab" for "Individual" subscriber..........................passed
+And Gather "Transactions" for "Individual" subscriber.......................passed
+And Gather "Notes" for "Individual" subscriber..............................passed
+And Gather "UsageBalance" for "Individual" subscriber.......................passed
+And Gather "CallDetails" for "Individual" subscriber........................passed
+And GatherDBData using query "getTransactions" for "Individual" Account.....passed
+Then Verify that "Individual" subscriber is created in "Activated" state....passed
+]]></system-out>
+</testcase>
+<testcase classname="Regression" name="create Group subscriber and gather logs screenshots and DB data" time="131.811588">
+<system-out><![CDATA[Given Configurations........................................................passed
+When Create "Hybrid" "Group" Account........................................passed
+And Create "first" SIM......................................................passed
+And Create "first" "Postpaid" "NonResponsible" Sub Account..................passed
+And Create "first" "Postpaid" Subscriber with PP "100062" and Initial Balance/Credit Limit "$1000.00".passed
+And Create "second" SIM.....................................................passed
+And Create "second" "Prepaid" "Responsible" Sub Account.....................passed
+And Create "second" "Prepaid" Subscriber with PP "100026" and Initial Balance/Credit Limit "$1000.00".passed
+And Collect Logs............................................................passed
+And Gather "Transactions" for "Group" account...............................passed
+And Gather "Notes" for "first" account......................................passed
+And Gather "UsageBalance" for "second" account..............................passed
+And Gather "MobileNumberTab" for "first" subscriber.........................passed
+And Gather "BillingInfoTab" for "second" subscriber.........................passed
+And GatherDBData using query "getTransactions" for "Group" Account..........passed
+Then Verify that "first" subscriber is created in "Activated" state.........passed
+And Verify that "second" subscriber is created in "Activated" state.........passed
 ]]></system-out>
 </testcase>
 </testsuite>

@@ -20,9 +20,6 @@ import com.redknee.util.crmapi.soap.paymentgatewayintegration.xsd.paymentgateway
 import com.redknee.util.crmapi.soap.paymentgatewayintegration.xsd.paymentgatewayintegration_v1_0.CreateTokenResponse;
 import com.redknee.util.crmapi.soap.paymentgatewayintegration.xsd.paymentgatewayintegration_v1_0.CreateTokenResponseE;
 
-
-
-
 public class PaymentGatewayIntegrationService extends SOAPHandler{
 
 	PaymentGatewayIntegrationServiceStub stub;

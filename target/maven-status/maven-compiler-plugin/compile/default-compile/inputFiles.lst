@@ -26,6 +26,7 @@ C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soa
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\generalprovisioning\xsd\_2010\_06\CreditCategoryE.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\paymentgatewayintegration\xsd\paymentgatewayintegration_v1_0\CreateTokenE.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\servicesandbundles\xsd\_2009\_04\AdditionalMobileNumber.java
+C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\net\mylearnings\bssauto\Beans\Subscriber.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\common\exception\xsd\_2008\_08\ValidationExceptionE.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\paymentgatewayintegration\xsd\_2012\_03\ReadTokensResponseE.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\paymentgatewayintegration\xsd\_2012\_03\CreateTokenResponse.java
@@ -116,12 +117,14 @@ C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\net\mylearnings\bssauto\hel
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\common\xsd\_2008\_08\BatchResultsE.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\common\exception\xsd\_2008\_08\CRMException.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\net\mylearnings\bssauto\Exceptions\NotTargetedPageException.java
+C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\net\mylearnings\bssauto\Beans\SIM.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\net\mylearnings\bssauto\customPageFactory\CustomPageFactory.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\subscriptions\xsd\_2011\_01\MergedBalanceHistoryE.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\servicesandbundles\xsd\_2010\_06\CallingGroupTypeE.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\servicesandbundles\xsd\_2010\_06\RecurrenceType.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\servicesandbundles\xsd\_2011\_01\ServiceReferenceE.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\subscriptions\xsd\_2011\_01\ContractSubscriptionUpdateCriteria.java
+C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\net\mylearnings\bssauto\flow\BasicFlows.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\common\xsd\_2008\_08\BatchResultType.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\servicesandbundles\xsd\_2010\_06\PricePlanOptionUpdateType.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\subscriptions\xsd\_2011\_01\SubscriptionUpdateFeeBreakdownE.java
@@ -283,6 +286,7 @@ C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soa
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\calldetails\xsd\_2011\_03\CallDetailQueryResponseE.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\subscriptions\xsd\_2011\_01\BaseSubscriptionExtension.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\common\xsd\_2008\_08\BatchResults.java
+C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\net\mylearnings\bssauto\Beans\Account.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\paymentgatewayintegration\xsd\_2012\_03\UpdateScheduleResponse.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\subscriptions\xsd\_2010\_06\MutableSubscriptionProfileE.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\paymentgatewayintegration\xsd\paymentgatewayintegration_v1_0\CalculatePaymentTax.java
@@ -303,7 +307,6 @@ C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\net\mylearnings\bssauto\flo
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\subscriptions\xsd\_2011\_01\PricePlanSubscriptionUpdateCriteria.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\paymentgatewayintegration\xsd\_2012\_03\CreateTokenResponseE.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\paymentgatewayintegration\xsd\_2012\_03\ApplyPaymentChargeResponse.java
-C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\net\mylearnings\bssauto\flow\AccountFlows.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\common\exception\xsd\_2008\_08\DataCreationExceptionE.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\servicesandbundles\xsd\_2011\_01\PricePlanDependencyGroupModificationResultE.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\paymentgatewayintegration\xsd\paymentgatewayintegration_v1_0\ReadSchedulesE.java
@@ -450,6 +453,7 @@ C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soa
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\subscriptions\xsd\_2011\_01\SubscriptionContractStatusE.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\calldetails\xsd\_2011\_03\DetailedCallDetailWithBundlesQueryResponseE.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\subscriptions\extensions\xsd\_2011\_04\PackageReference.java
+C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\net\mylearnings\bssauto\helpers\Driver.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\subscriptions\xsd\_2011\_01\BucketHistoryCreateResultE.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\subscriptions\xsd\_2011\_01\BaseReadOnlySubscriptionExtensionSequence_type2.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\subscriptions\extensions\xsd\_2011\_04\MutableMultiSimSubscriptionExtensionE.java
@@ -459,6 +463,7 @@ C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soa
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\paymentgatewayintegration\xsd\_2012\_03\DeleteTokenRequest.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\subscriptions\xsd\_2011\_01\PricePlanSubscriptionUpdateCriteriaResults.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\servicesandbundles\xsd\_2011\_01\BundleCategoryE.java
+C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\net\mylearnings\bssauto\Beans\GenericProperties.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\servicesandbundles\xsd\_2011\_01\PricePlanValidationGroupModificationResultE.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\subscriptions\xsd\_2010\_06\PromotionCounter.java
 C:\redknee\eclipse_workspace\BSSAutoV3\src\main\java\com\redknee\util\crmapi\soap\calldetails\xsd\_2009\_04\UsageTypeReferenceE.java

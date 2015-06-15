@@ -1,6 +1,8 @@
 package net.mylearnings.bssauto.steps;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -14,11 +16,16 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import net.mylearnings.bssauto.flow.AccountFlows;
+
+import net.mylearnings.bssauto.Beans.Account;
+import net.mylearnings.bssauto.Beans.SIM;
+import net.mylearnings.bssauto.Beans.Subscriber;
+import net.mylearnings.bssauto.flow.BasicFlows;
 import net.mylearnings.bssauto.flow.DataGatherer;
 import net.mylearnings.bssauto.helpers.DBConn;
 import net.mylearnings.bssauto.helpers.Helper;
 import net.mylearnings.bssauto.helpers.LogCollector;
+import net.mylearnings.bssauto.helpers.Node;
 import net.mylearnings.bssauto.helpers.TestEnv;
 
 import cucumber.api.java.After;
@@ -31,59 +38,22 @@ import cucumber.api.java.en.And;
 import org.junit.Assert;
 
 public class RegressionSteps{
-	private WebDriver driver;
-	private TestEnv testEnv;
 	private static Logger logger;
-	AccountFlows flow;
-	Map<String, String> ctx ;
-	String SPID = "1";
-	String Type = "GSM"; 
-	String techology = Type;
-	String creditCategory="0";
-	String discountClass="";
-	String PP;
-	String initBalanceCrLimit;
+	BasicFlows flow;
+	Map<String, Object> ctx ;
+	LogCollector logCollector;
 	
-	public void setUp()  {
-	    testEnv = new TestEnv();
-	    
-	    //Princess with flycdb oracle database on hoover with RKDB database
-	    //testEnv.setBSS("princess", "rkadm", "rkadm", "SSH" );
-	    //testEnv.setCRMDB(new DBConn("flycdb", "flycdb", "RKDB", "hoover", "Oracle"));
-	    
-	    //Optimus-z2 with appcrm872 SQLServer database on doris with appcrm999 database
-	    testEnv.setBSS("optimus-z2", "rkadm", "rkadm", "SSH" );
-	    testEnv.setCRMDB(new DBConn("appcrm872", "appcrm872", "appcrm999", "doris", "SQLServer"));
-		 
+	public void setUp()  { 
 	    logger=  LogManager.getLogger(RegressionSteps.class);
 	 }
-	public void initializeDriver()
-	{
-		/*****InternetExplorer******/
-		// File file = new File("C:\\Users\\kavan.sheth\\Desktop\\IEDriverServer_Win32_2.45.0\\IEDriverServer.exe");
-		// System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
-		// driver = new InternetExplorerDriver(); 
-		
-		/*******ChromeDriver*********/
-	    File file = new File("C:\\Users\\kavan.sheth\\Desktop\\chromedriver.exe");
-	    System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
-	    driver = new ChromeDriver();
-	    
-	    /********FireFoxDriver*******/
-		// driver = new FirefoxDriver();
-		
-	    /****DriverConfigurations*****/
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);	 
-	}
 	
 	@Before
 	public void before()
 	{
 		setUp();
-		initializeDriver();
-		flow=new AccountFlows(driver,testEnv);
-		ctx = new HashMap<String, String>();
+		flow=new BasicFlows("Chrome"); //IE,Chrome,FF
+		ctx = new HashMap<String, Object>();
+		logCollector = new LogCollector();
 	}
 	
 	@After
@@ -91,7 +61,6 @@ public class RegressionSteps{
 	{
 	     flow=null;
 	     ctx=null;
-	     driver.quit();
 	}
 	
 	@Given("Configurations")
@@ -99,59 +68,99 @@ public class RegressionSteps{
 	{
 		
 	}
-	@When("Create SIM")
-	public void createSIM(){
-		logger.entry(ctx, Type, SPID);
-		flow.createSIM(ctx, "", Type, SPID);
-		logger.exit();
-	}
-	@When("Create Account")
-	public void createAccount(){
-		logger.entry(ctx, SPID, creditCategory, discountClass);
-		flow.createAccount(ctx, SPID, "Prepaid", creditCategory, discountClass,"","","");
+	
+	@When("^Create \"(.+)\" SIM$")
+	public void createSIM(String identifier){
+		logger.entry(ctx, identifier);
+		flow.createSIM(ctx, identifier, new SIM() );
 		logger.exit();
 	}
 	
-	@And("Start LogCollector")
-	public void StartLogCollector(){
+	@When("^Create a SIM$")
+	public void createIndividualSIM(){
+		logger.entry(ctx);
+		flow.createSIM(ctx, "Individual", new SIM() );
+		logger.exit();
+	}
+	
+	@When("^Create \"(.+)\" \"(.+)\" Account$") 
+	public void createGroupAccount( String billingType, String groupType){
+		//Create prepaid/postpaid/hybrid group/pool/individual  Account
+		logger.entry(ctx,  billingType, groupType);
+		if(groupType.equals("Individual"))
+			flow.createAccount(ctx, groupType, new Account(billingType,groupType, "", ""  ));
+		else
+			flow.createAccount(ctx, "Main", new Account(billingType,groupType, "", ""  ));
+		logger.exit();
+	}
+	@When("^Create \"(.+)\" \"(.+)\" \"(.+)\" Sub Account$") 
+	public void createSubAccount(String identifier,String billingType, String responsible){
+		//Create first prepaid/postpaid/hybrid responsible/non-responsible Sub Account
+		logger.entry(ctx,  identifier, billingType, responsible);
+		if (responsible.equals("Responsible"))
+			flow.createAccount(ctx, identifier,new Account(billingType,"Individual", ((Account)ctx.get("createAccount.Main.Account")).getBAN() , "Y"  ));
+		else
+			flow.createAccount(ctx, identifier,new Account(billingType,"Individual", ((Account)ctx.get("createAccount.Main.Account")).getBAN() , "N"  ));
+		logger.exit();
+	}
+	@And("^Start \"(.+)\" LogCollector for \"(.+)\" seconds$")
+	public void StartLogCollector(String nodeType, int delay){
 		logger.entry();
+		Class<?> cls;
+		Node node=null;
+		try {
+			cls = Class.forName("net.mylearnings.bssauto.helpers.TestEnv");
+		Method method = cls.getDeclaredMethod("getInstance",(Class<?>[])null);
+		TestEnv testEnv = (TestEnv)method.invoke(cls,(Object[]) null);
+		method = cls.getDeclaredMethod("get"+nodeType, (Class<?>[])null);
+	    node = (Node)method.invoke(testEnv,(Object[]) null);
+		} catch (ClassNotFoundException  | IllegalAccessException | NoSuchMethodException | SecurityException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		}
 		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-		Helper.runCommand("cd /opt/redknee/app/crm/current/log/; echo > AppCrm.log", testEnv.getBSS());
-		LogCollector.add(testEnv.getBSS(), "collectedLogs\\", "/opt/redknee/app/crm/current/log/", timeStamp + "_" + testEnv.getBSS().getHost() + "_BSS_AppCrm.log"  , "AppCrm.log", 60);
+		Helper.runCommand("cd "+node.getLogPath()+"; echo > "+node.getLogFileName(), node);
+		logCollector.add(node, "collectedLogs\\", node.getLogPath(), timeStamp + "_" + TestEnv.getInstance().getBSS().getHost() + "_"+nodeType+"_"+node.getLogFileName()  , node.getLogFileName(), delay);
 		logger.exit();
 	}
-	@When("Create \"(.+)\" Subscriber with PP \"(.+)\" and initial Balance \"(.+)\"")
-    public void createSubscriber(String type,String Priceplan, String Balance)
+	@When("^Create \"(.+)\" \"(.+)\" Subscriber with PP \"(.+)\" and Initial Balance/Credit Limit \"(.+)\"$")
+    public void createSubscriber( String identifier, String type,String Priceplan, String Balance)
 	{
-		PP=Priceplan;
-		initBalanceCrLimit=Balance;
-		flow.createSubscriber(ctx, SPID,ctx.get("createAccount.BAN"),ctx.get("createSIM.SIM"),  initBalanceCrLimit, techology, "", PP, type );
-
+		flow.createSubscriber(ctx, identifier, new Subscriber((Account)ctx.get("createAccount."+identifier+".Account"), (SIM)ctx.get("createSIM."+identifier+".SIM"), Balance, Priceplan, type ));
 	}
-	@And("Collect Logs")
+	@And("^Collect Logs$")
 	public void CollectLogs()
-	{
-		LogCollector.getResult();
+	{	//this can be called once only in a scenario as pool will be closed after collecting results
+		logCollector.getResult();
 	} 
-	@And("Gather \"(.+)\" level \"(.+)\"")
-	public void GatherData(String Level, String Activity)
+	@And("^Gather \"(.+)\" for \"(.+)\" account$")
+	public void GatherAccountData( String Activity,String identifier )
 	{
-		DataGatherer dg = new DataGatherer(driver,testEnv);
-		dg.getBSSData(ctx, Level,Activity );
+		DataGatherer dg = new DataGatherer("Chrome");
+		dg.getBSSData(ctx, "Account",Activity, identifier );
 	}
-	
-	@And("GatherDBData using query \"(.+)\"")
-	public void GatherDBData(String query)
+	@And("^Gather \"(.+)\" for \"(.+)\" subscriber$")
+	public void GatherSubscriberData( String Activity,String identifier )
 	{
-		DataGatherer dg = new DataGatherer(driver,testEnv);
+		DataGatherer dg = new DataGatherer("Chrome");
+		dg.getBSSData(ctx, "Subscriber",Activity, identifier );
+	}
+	@And("^GatherDBData using query \"(.+)\" for \"(.+)\" Account$")
+	public void GatherDBData(String query, String identifier)
+	{
+		DataGatherer dg = new DataGatherer("Chrome");
 		if(query.equals("getTransactions"))
-			dg.getDBData(0,0,query, new String[]{"S",ctx.get("createAccount.BAN")});
+		{	
+			if (identifier.equals("Group")||identifier.equals("Group Pooled"))
+				dg.getDBData(0,0,query, new String[]{"S",((Account)ctx.get("createAccount.Main.Account")).getBAN()});
+			else
+				dg.getDBData(0,0,query, new String[]{"S",((Account)ctx.get("createAccount."+identifier+".Account")).getBAN()});
+		}
 	}
-	@Then ("Verify that subscriber created in \"(.+)\" state")
-	public void verifySubscriberState(String state)
+	@Then ("^Verify that \"(.+)\" subscriber is created in \"(.+)\" state$")
+	public void verifySubscriberState(String identifier,String state)
 	{
 		if (state.equals("Activated")){  
-			String stateValue= Helper.queryDBForSingleValue(testEnv.getCRMDB(), 0, "", "getSubscriberState", new String[]{"S",ctx.get("createSubscriber.MSISDN" )}, new String[]{"S",ctx.get("createAccount.BAN" )} );
+			String stateValue= Helper.queryDBForSingleValue(TestEnv.getInstance().getCRMDB(), 0, "", "getSubscriberState", new String[]{"S",((Subscriber)ctx.get("createSubscriber."+identifier+".Subscriber" )).getMsisdn()}  );
 			Assert.assertEquals(stateValue,"1");
 		}	
 	}

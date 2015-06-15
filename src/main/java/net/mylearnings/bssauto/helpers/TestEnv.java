@@ -2,18 +2,35 @@ package net.mylearnings.bssauto.helpers;
 
 public class TestEnv {
 	
-	Node BSS;
-	Node Mediation;
-	Node Invoicing;
-	Node Provisioning;
-	Node URCS;
-	Node CPS;
-	Node API;
-	Node OCG;
-	Node ESB;
-	DBConn CRMDB;
+	private Node BSS;
+	private Node Mediation;
+	private Node Invoicing;
+	private Node Provisioning;
+	private Node URCS;
+	private Node CPS;
+	private Node API;
+	private Node OCG;
+	private Node ESB;
+	private DBConn CRMDB;
    
-    
+	private static TestEnv instance = null;
+	protected TestEnv(){
+		//Princess with flycdb oracle database on hoover with RKDB database
+	    //testEnv.setBSS("princess", "rkadm", "rkadm", "SSH" );
+	    //testEnv.setCRMDB(new DBConn("flycdb", "flycdb", "RKDB", "hoover", "Oracle"));
+	    
+	    //Optimus-z2 with appcrm872 SQLServer database on doris with appcrm999 database
+	    setBSS("optimus-z2", "rkadm", "rkadm", "SSH" );
+	    setCRMDB(new DBConn("appcrm872", "appcrm872", "appcrm999", "doris", "SQLServer"));
+	}
+	public static TestEnv getInstance() {
+	      if(instance == null) {
+	         instance = new TestEnv();
+	      }
+	      return instance;
+	   }
+	
+	
 	public Node getBSS() {
 		return BSS;
 	}
@@ -88,9 +105,9 @@ public class TestEnv {
 		setMediation(host, user, pass, connType);
 		setInvoicing(host, user, pass, connType);
 		setProvisioning(host, user, pass, connType);
+		setAPI(host, user, pass, connType);
 		setURCS(host, user, pass, connType);
 		setCPS(host, user, pass, connType);
-		setAPI(host, user, pass, connType);
 		setOCG(host, user, pass, connType);
 		setESB(host, user, pass, connType);
 	}
@@ -112,7 +129,6 @@ public class TestEnv {
 	}
 	private void setURCS(String host, String user, String pass, String connType) {
 		URCS = new Node(host, user, pass, connType, "URCS");
-		
 	}
 	private void setProvisioning(String host, String user, String pass,
 			String connType) {

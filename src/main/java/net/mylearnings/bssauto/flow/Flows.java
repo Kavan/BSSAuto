@@ -1,7 +1,6 @@
 package net.mylearnings.bssauto.flow;
 
-import static net.mylearnings.bssauto.flow.Flows.logger;
-
+import java.io.File;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -12,27 +11,30 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
 
 
 import net.mylearnings.bssauto.Exceptions.NotTargetedPageException;
 import net.mylearnings.bssauto.customPageFactory.CustomPageFactory;
+import net.mylearnings.bssauto.helpers.Driver;
 import net.mylearnings.bssauto.helpers.Node;
-import net.mylearnings.bssauto.helpers.TestEnv;
 import net.mylearnings.bssauto.pages.CRM.BasePage;
 import net.mylearnings.bssauto.pages.CRM.HomePage;
 import net.mylearnings.bssauto.pages.CRM.LoginPage;
 
 public class Flows {
+	 
 	 protected static Logger logger=  LogManager.getLogger(Flows.class);
-	 protected TestEnv testEnv ;
 	 protected WebDriver driver ;
 	 
-	 public Flows(WebDriver driver, TestEnv te)
+	 public Flows(String driverType)
 	 {
-		 this.driver = driver;
-		 this.testEnv = te;
+		 driver = Driver.getInstance(driverType);
 	 }
+	 
 	 protected void ifUnexpectedErrorFailElseGetFeedback(BasePage page, String[] Expected)
 	 {   
 		 //due to insufficient funds. Service not provisioned or suspended

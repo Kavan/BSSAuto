@@ -1,6 +1,5 @@
 com\redknee\util\crmapi\soap\paymentgatewayintegration\xsd\_2012\_03\ApplyPaymentChargeRequest$Factory.class
 com\redknee\util\crmapi\soap\servicesandbundles\xsd\_2010\_11\PricePlanCriteriaChoice_type0$Factory.class
-net\mylearnings\bssauto\flow\AccountFlows.class
 com\redknee\util\crmapi\soap\servicesandbundles\xsd\_2011\_01\PricePlanValidationGroupModificationResultE$Factory.class
 com\redknee\util\crmapi\soap\common\exception\xsd\_2008\_08\ValidationExceptionE.class
 com\redknee\util\crmapi\soap\servicesandbundles\xsd\_2010\_11\PricePlanCriteriaE.class
@@ -39,6 +38,7 @@ com\redknee\util\crmapi\soap\paymentgatewayintegration\xsd\_2012\_03\DeleteSched
 com\redknee\util\crmapi\soap\subscriptions\extensions\xsd\_2011\_04\FixedStopPricePlanSubscriptionExtensionReference.class
 com\redknee\util\crmapi\soap\subscriptions\xsd\_2011\_01\SubscriptionSecondaryBalanceQueryResult$Factory.class
 com\redknee\util\crmapi\soap\subscriptions\extensions\xsd\_2011\_04\MutablePPSMSupporteeSubscriptionExtensionE.class
+net\mylearnings\bssauto\Beans\Account.class
 com\redknee\util\crmapi\soap\subscriptions\xsd\_2010\_06\SubscriptionBundleUnitType.class
 com\redknee\util\crmapi\soap\subscriptions\xsd\_2011\_01\BucketHistoryCreateResultE.class
 com\redknee\util\crmapi\soap\calldetails\xsd\_2011\_03\CallDetailQueryResponse$Factory.class
@@ -68,6 +68,7 @@ com\redknee\util\crmapi\soap\paymentgatewayintegration\xsd\paymentgatewayintegra
 com\redknee\util\crmapi\soap\paymentgatewayintegration\xsd\paymentgatewayintegration_v1_0\UpdateTokenE.class
 com\redknee\util\crmapi\soap\servicesandbundles\xsd\_2011\_01\PricePlanValidationGroupModificationResultE.class
 net\mylearnings\bssauto\pages\CRM\LoginPage.class
+net\mylearnings\bssauto\helpers\Driver.class
 com\redknee\util\crmapi\soap\paymentgatewayintegration\xsd\paymentgatewayintegration_v1_0\DeleteSchedule.class
 com\redknee\util\crmapi\soap\common\exception\xsd\_2008\_08\DataStoreException$Factory.class
 net\mylearnings\bssauto\pages\CRM\NewAccountPage.class
@@ -367,6 +368,7 @@ com\redknee\util\crmapi\soap\servicesandbundles\xsd\_2009\_04\AdditionalMobileNu
 com\redknee\util\crmapi\soap\servicesandbundles\xsd\_2011\_01\PricePlanDependencyGroupModificationResultE$Factory.class
 com\redknee\util\crmapi\soap\subscriptions\xsd\_2011\_01\ContractSubscriptionUpdateCriteria.class
 com\redknee\util\crmapi\soap\paymentgatewayintegration\xsd\_2012\_03\PaymentGatewayResultE.class
+net\mylearnings\bssauto\Beans\Subscriber.class
 net\mylearnings\bssauto\pages\CRM\RecurringChargePage.class
 com\redknee\util\crmapi\soap\subscriptions\xsd\_2010\_06\SubscriptionProfileCreationExceptionE$Factory.class
 com\redknee\util\crmapi\soap\servicesandbundles\xsd\_2011\_01\PricePlanDependencyGroupTypeE.class
@@ -774,6 +776,7 @@ com\redknee\util\crmapi\soap\common\exception\xsd\_2008\_08\ShutdownException.cl
 com\redknee\util\crmapi\soap\servicesandbundles\xsd\_2010\_06\PricePlanOptionUpdateResult$Factory.class
 com\redknee\util\crmapi\soap\servicesandbundles\xsd\_2011\_01\BundleCategoryRatePlanAssociation.class
 com\redknee\util\crmapi\soap\calldetails\xsd\_2011\_03\DetailedCallDetailWithBundlesQueryResponseE$Factory.class
+net\mylearnings\bssauto\Beans\GenericProperties.class
 com\redknee\util\crmapi\soap\subscriptions\extensions\xsd\_2011\_04\PackageReferenceE$Factory.class
 com\redknee\util\crmapi\soap\paymentgatewayintegration\xsd\paymentgatewayintegration_v1_0\CreateToken$Factory.class
 com\redknee\util\crmapi\soap\servicesandbundles\xsd\_2011\_01\ServiceFeeReferenceE.class
@@ -988,6 +991,7 @@ com\redknee\util\crmapi\soap\subscriptions\extensions\xsd\_2010\_06\ReadOnlyPPSM
 com\redknee\util\crmapi\soap\common\xsd\_2008\_08\BillingMessageReference$Factory.class
 com\redknee\util\crmapi\soap\paymentgatewayintegration\xsd\_2012\_03\ChargingGatewayResultE.class
 net\mylearnings\bssauto\helpers\LogCollectorThread.class
+net\mylearnings\bssauto\flow\BasicFlows.class
 com\redknee\util\crmapi\soap\paymentgatewayintegration\xsd\paymentgatewayintegration_v1_0\DeleteScheduleResponseE.class
 com\redknee\util\crmapi\soap\common\exception\xsd\_2008\_08\CRMException.class
 com\redknee\util\crmapi\soap\common\xsd\_2011\_05\GenericResponse.class
@@ -996,6 +1000,7 @@ com\redknee\util\crmapi\soap\calldetails\xsd\_2009\_04\UsageTypeReferenceE$Facto
 com\redknee\util\crmapi\soap\subscriptions\xsd\_2011\_01\BaseSubscriptionExtensionReference.class
 net\mylearnings\bssauto\helpers\MyFTPClient.class
 com\redknee\util\crmapi\soap\subscriptions\extensions\xsd\_2011\_04\MutablePPSMSupporteeSubscriptionExtension$Factory.class
+net\mylearnings\bssauto\Beans\SIM.class
 com\redknee\util\crmapi\soap\servicesandbundles\xsd\_2011\_01\PricePlanFunctionType.class
 com\redknee\util\crmapi\soap\servicesandbundles\xsd\_2011\_01\ServiceReference.class
 com\redknee\util\crmapi\soap\paymentgatewayintegration\xsd\paymentgatewayintegration_v1_0\UpdateScheduleE.class

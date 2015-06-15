@@ -1,0 +1,2 @@
+
+2015-06-13 01:10:09,898 [:/EXECUTING(34)=SimpleTaskRunner - sendApplicationHeartbeat] DEBUG com.redknee.framework.application.HostnameSupport - Host mapping for [224.1.1.1] not found. Returning original input.

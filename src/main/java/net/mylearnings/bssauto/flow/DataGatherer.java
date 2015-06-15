@@ -2,32 +2,27 @@ package net.mylearnings.bssauto.flow;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import net.mylearnings.bssauto.Beans.Account;
+import net.mylearnings.bssauto.Beans.Subscriber;
 import net.mylearnings.bssauto.helpers.Helper;
 import net.mylearnings.bssauto.helpers.TestEnv;
 import net.mylearnings.bssauto.pages.CRM.CreateSubscriberPage;
 import net.mylearnings.bssauto.pages.CRM.HomePage;
 import net.mylearnings.bssauto.pages.CRM.NewAccountPage;
 import net.mylearnings.bssauto.pages.CRM.SearchAccountPage;
-import net.mylearnings.bssauto.pages.CRM.SearchSubscriberPage;
-import net.mylearnings.bssauto.pages.CRM.CreateSubscriberPage.BillingInfo;
-import net.mylearnings.bssauto.pages.CRM.CreateSubscriberPage.Rating;
 
 public class DataGatherer extends Flows{
 
-	public DataGatherer(WebDriver driver,TestEnv te) {
-		super(driver,te);
+	public DataGatherer(String driverType) {
+		super(driverType);
 		
 	}
 	
@@ -40,33 +35,33 @@ public class DataGatherer extends Flows{
 	 * @param DataType - A keyword to specify what attribute of a account of subscriber to be fetched like  transactions/Notes/Usage & Balance/Call details etc.
 	 * @param te
 	 */
-	public void getBSSData(Map<String, String> ctx,  String level,  String dataType )
+	public void getBSSData(Map<String, Object> ctx,  String level,  String dataType, String identifier )
 	{
-		 logger.entry(level, ctx, dataType,testEnv);
+		 logger.entry(level, ctx, dataType);
 		 CreateSubscriberPage createSubPage=null;
 		 SearchAccountPage searchAccountPage = null;
 		 NewAccountPage newAccountPage = null;
 		 
 		  
 		 try{
-			 HomePage homePage =  login(driver, testEnv.getBSS());
+			 HomePage homePage =  login(driver, TestEnv.getInstance().getBSS());
 			 searchAccountPage = homePage.ClickAccountSub();
 			 PageFactory.initElements(driver, searchAccountPage);
-			 searchAccountPage.setAccount(ctx.get("createAccount.BAN"));
+			 searchAccountPage.setAccount(((Account)ctx.get("createAccount."+identifier+".Account")).getBAN());
 			 
 			 // had to introduce looping to make sure that BAN field is populated, 
 			 // Encountered a peculiar issue , where BAN field was getting emptied, probably by javascript,
 			 // so rather than waiting for some time , decided to have loop ensuring that ban field is populated
 			 // issue was encountered only in firefox, probably javascripts are executed slowly on firefox
 			 do{
-				 searchAccountPage.setAccount(ctx.get("createAccount.BAN"));
-			 }while(!searchAccountPage.getAccount().equals(ctx.get("createAccount.BAN")));
+				 searchAccountPage.setAccount(((Account)ctx.get("createAccount."+identifier+".Account")).getBAN());
+			 }while(!searchAccountPage.getAccount().equals(((Account)ctx.get("createAccount."+identifier+".Account")).getBAN()));
 			 
 			 
 			 if (level.equals("Account")){
 				 searchAccountPage.selectSearchType("0");
 				 searchAccountPage.clickSearch();
-				 newAccountPage=searchAccountPage.clickAccountEdit(ctx.get("createAccount.BAN"));
+				 newAccountPage=searchAccountPage.clickAccountEdit(((Account)ctx.get("createAccount."+identifier+".Account")).getBAN());
 				 PageFactory.initElements(driver, newAccountPage);
 				 
 				 switch(dataType)
@@ -93,7 +88,7 @@ public class DataGatherer extends Flows{
 			 else if (level.equals("Subscriber")){
 				 searchAccountPage.selectSearchType("2");
 				 searchAccountPage.clickSearch();
-				 createSubPage=searchAccountPage.clickSubscriberEdit(ctx.get("createSubscriber.MSISDN"));
+				 createSubPage=searchAccountPage.clickSubscriberEdit(((Subscriber)ctx.get("createSubscriber."+identifier+".Subscriber")).getMsisdn());
 				 PageFactory.initElements(driver, createSubPage);
 				 
 				 
@@ -168,7 +163,7 @@ public class DataGatherer extends Flows{
 	}
 	public void getDBData(int pollingTime, int rows, String query, String[]... args )
 	{
-		ResultSet rs = Helper.queryDBResultSet(testEnv.getCRMDB(), pollingTime, rows, query, args);
+		ResultSet rs = Helper.queryDBResultSet(TestEnv.getInstance().getCRMDB(), pollingTime, rows, query, args);
 		logger.info(ResultSet2HTML(rs));
 	}
 	private StringBuffer ResultSet2HTML(ResultSet rs)

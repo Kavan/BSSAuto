@@ -14,17 +14,17 @@ import net.mylearnings.bssauto.flow.Flows;
 
 public class LogCollector {
 
-		private static ExecutorService pool = Executors.newFixedThreadPool(100);
-	    private static List<Future<String>> list = new ArrayList<Future<String>>();
-	    protected static Logger logger=  LogManager.getLogger(Flows.class);
+		private  ExecutorService pool = Executors.newFixedThreadPool(100);
+	    private  List<Future<String>> list = new ArrayList<Future<String>>();
+	    protected  Logger logger=  LogManager.getLogger(Flows.class);
 	    
-	    public static void add(Node node, String srcDir, String targetDir, String srcFileName, String targetFileName, long wait )
+	    public  void add(Node node, String srcDir, String targetDir, String srcFileName, String targetFileName, long wait )
 	    {
 	        list.add(pool.submit(new LogCollectorThread(System.currentTimeMillis()/1000,wait, srcDir,  targetDir,  srcFileName,  targetFileName, node ))); 		    			
 	        logger.info("Addding to Pool:"+ srcDir + " " + targetDir + " " + srcFileName + " " + targetFileName );
 	    }
 	    
-	    public static void getResult()
+	    public  void getResult()
 	    {   
 	        try{
 	 			for (Future<String> future : list) {
